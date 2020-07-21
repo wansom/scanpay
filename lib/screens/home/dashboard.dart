@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
         body: ListView(
           children: <Widget>[
             Container(
+              height: MediaQuery.of(context).size.height,
               child: SupermarketList(),
             ),
           ],
