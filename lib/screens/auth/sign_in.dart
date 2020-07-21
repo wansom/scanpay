@@ -35,7 +35,7 @@ class _SigninState extends State<Signin> {
                             Container(
                               padding:
                                   EdgeInsets.fromLTRB(15.0, 35.0, 0.0, 0.0),
-                              child: Text('Praise',
+                              child: Text('Scan',
                                   style: TextStyle(
                                       fontSize: 60.0,
                                       fontWeight: FontWeight.bold)),
@@ -43,7 +43,7 @@ class _SigninState extends State<Signin> {
                             Container(
                               padding:
                                   EdgeInsets.fromLTRB(16.0, 100.0, 0.0, 0.0),
-                              child: Text('The Lord',
+                              child: Text('Pay & Go',
                                   style: TextStyle(
                                       fontSize: 60.0,
                                       fontWeight: FontWeight.bold)),
