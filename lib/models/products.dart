@@ -7,8 +7,8 @@ class Products {
 
 List<Products> myProducts = [
   Products(
-    productName: 'hello',
+    productName: 'champagne',
     productInfo: 'very sweet and juicy',
-    barCode: '22230666',
+    barCode: '036000291452',
   )
 ];

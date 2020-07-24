@@ -55,7 +55,7 @@ class _SigninState extends State<Signin> {
                                   style: TextStyle(
                                       fontSize: 40.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.orange)),
+                                      color: Colors.green)),
                             )
                           ],
                         ),
@@ -112,7 +112,7 @@ class _SigninState extends State<Signin> {
                                     child: Text(
                                       'Forgot Password',
                                       style: TextStyle(
-                                          color: Colors.orange,
+                                          color: Colors.green,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'Montserrat',
                                           decoration: TextDecoration.underline),
@@ -124,8 +124,8 @@ class _SigninState extends State<Signin> {
                                   height: 40.0,
                                   child: Material(
                                     borderRadius: BorderRadius.circular(20.0),
-                                    shadowColor: Colors.orangeAccent,
-                                    color: Colors.orange,
+                                    shadowColor: Colors.greenAccent,
+                                    color: Colors.green,
                                     elevation: 7.0,
                                     child: GestureDetector(
                                       onTap: () async {
@@ -194,7 +194,7 @@ class _SigninState extends State<Signin> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'New to Spotify ?',
+                            'New to ScanPay ?',
                             style: TextStyle(fontFamily: 'Montserrat'),
                           ),
                           SizedBox(width: 5.0),
@@ -205,7 +205,7 @@ class _SigninState extends State<Signin> {
                             child: Text(
                               'Register',
                               style: TextStyle(
-                                  color: Colors.orange,
+                                  color: Colors.green,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline),
