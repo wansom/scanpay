@@ -1,10 +1,10 @@
-class Products {
+class ProductDetails {
   String productName;
   String productPrice;
   String productCode;
   String productInfo;
 
-  Products(
+  ProductDetails(
       {this.productCode,
       this.productInfo,
       this.productName,

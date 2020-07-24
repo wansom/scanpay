@@ -1,14 +1,11 @@
 class Products {
-  String barCode;
-  String productName;
-  String productInfo;
-  Products({this.barCode, this.productInfo, this.productName});
-}
-
-List<Products> myProducts = [
+  String productcode;
+  String productname;
+  String productinfo;
+  String productprice;
   Products(
-    productName: 'champagne',
-    productInfo: 'very sweet and juicy',
-    barCode: '036000291452',
-  )
-];
+      {this.productcode,
+      this.productinfo,
+      this.productname,
+      this.productprice});
+}

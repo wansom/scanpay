@@ -2,13 +2,13 @@ import 'package:barcode_scan/platform_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:scanpay/models/products.dart';
 import 'package:scanpay/models/supermaket_modal.dart';
 import 'package:scanpay/screens/bottom_bar.dart';
 import 'package:scanpay/screens/home/supermarket_list.dart';
 import 'package:scanpay/services/database_service.dart';
 import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:scanpay/shared/styles.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,6 +21,13 @@ class _HomePageState extends State<HomePage> {
     SupermarketList(),
   ];
   ScanResult barcode;
+  DatabaseService dbService = DatabaseService();
+  String productname = '';
+  String productinfo = '';
+  String productprice = '';
+  String productCode = '';
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     //streamprovider
@@ -30,13 +37,101 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(title: Text('ScanPay')),
         body: ListView(
           children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height / 2,
-              child: SupermarketList(),
-            ),
-            Column(
-              children: myText(),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty ? 'please product name' : null,
+                        decoration:
+                            inputDecoration.copyWith(labelText: 'product name'),
+                        onChanged: (value) {
+                          setState(() {
+                            productname = value ?? '';
+                          });
+                        },
+                      ),
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty ? 'please product info' : null,
+                        decoration:
+                            inputDecoration.copyWith(labelText: 'Description'),
+                        onChanged: (value) {
+                          setState(() {
+                            productinfo = value ?? '';
+                          });
+                        },
+                      ),
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty ? 'please product price' : null,
+                        decoration:
+                            inputDecoration.copyWith(labelText: 'Price'),
+                        onChanged: (value) {
+                          setState(() {
+                            productprice = value ?? '';
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('Scan product'),
+                          RaisedButton(
+                            onPressed: scanMe,
+                            child: Icon(Icons.camera),
+                          ),
+                        ],
+                      ),
+                      // TextFormField(
+                      //   validator: (value) => value.isEmpty
+                      //       ? 'please product scan Barcode'
+                      //       : null,
+                      //   decoration:
+                      //       inputDecoration.copyWith(labelText: 'barcode'),
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       productCode = value ?? '';
+                      //     });
+                      //   },
+                      // ),
+                      RaisedButton(
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            dbService.createRecord({
+                              'productname': productname,
+                              'productcode': barcode.rawContent,
+                              'productinfo': productinfo,
+                              'productprice': productprice,
+                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          }
+                        },
+                        child: Text('Add'),
+                      )
+                    ],
+                  )),
             )
+            // Container(
+            //   height: MediaQuery.of(context).size.height / 2,
+            //   child: SupermarketList(),
+            // ),
+            // Column(
+            //   children: myText(),
+            // ),
+            // RaisedButton(
+            //   onPressed: dbService.userData,
+            //   child: Text('Add'),
+            // )
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -56,25 +151,8 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         barcode = result;
       });
-
-      myProducts.add(Products(
-          productName: barcode.rawContent, productInfo: 'very sweet bananas'));
-
-      Navigator.pushNamed(context, '/checkout',
-          arguments: {'barcode': barcode.rawContent});
     } on PlatformException catch (e) {
       print(e);
-    }
-  }
-
-  List<Widget> myText() {
-    if (barcode != null && barcode.rawContent == myProducts[0].barCode) {
-      return [
-        Container(height: 50.0, child: Text(barcode.rawContent)),
-        Container(height: 50.0, child: Text(myProducts[0].productName)),
-      ];
-    } else {
-      return [Text('No results detected')];
     }
   }
 }
