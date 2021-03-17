@@ -83,10 +83,8 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text('Scan product'),
-                          RaisedButton(
-                            onPressed: scanMe,
-                            child: Icon(Icons.camera),
-                          ),
+                    
+                          ElevatedButton(onPressed:scanMe, child: Icon(Icons.camera),)
                         ],
                       ),
                       // TextFormField(
@@ -101,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                       //     });
                       //   },
                       // ),
-                      RaisedButton(
+                      ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             dbService.createRecord({

@@ -21,7 +21,6 @@ class _SigninState extends State<Signin> {
     return loading
         ? Loading()
         : Scaffold(
-            resizeToAvoidBottomPadding: false,
             body: ListView(
               children: <Widget>[
                 Container(

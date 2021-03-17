@@ -29,21 +29,25 @@ class _BottomBarState extends State<BottomBar> {
                 icon: Icon(
                   Icons.home,
                 ),
+                // ignore: deprecated_member_use
                 title: Text('home')),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.person_outline,
                 ),
+                // ignore: deprecated_member_use
                 title: Text('account')),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.shopping_basket,
                 ),
+                // ignore: deprecated_member_use
                 title: Text('Shop')),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.settings,
                 ),
+                // ignore: deprecated_member_use
                 title: Text('settings')),
           ]),
     );

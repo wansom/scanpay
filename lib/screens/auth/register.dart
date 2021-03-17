@@ -21,7 +21,6 @@ class _SignupPageState extends State<SignupPage> {
     return loading
         ? Loading()
         : new Scaffold(
-            resizeToAvoidBottomPadding: false,
             body:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
                     Widget>[
@@ -131,7 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                           color: Colors.transparent,
                           child: Container(
                             decoration: BoxDecoration(
-                                border: Border.all(
+                                border: Border.all(  
                                     color: Colors.black,
                                     style: BorderStyle.solid,
                                     width: 1.0),
